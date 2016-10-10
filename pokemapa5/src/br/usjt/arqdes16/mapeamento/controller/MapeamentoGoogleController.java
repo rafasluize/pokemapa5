@@ -41,11 +41,14 @@ public class MapeamentoGoogleController {
 
 	@RequestMapping("/google_jackson")
 	public String testeJackson(Endereco endereco, Model model) {
+		
 		RestTemplate restTemplate = new RestTemplate();
+		
 		ResultadoGoogle resultado = restTemplate
 				.getForObject(
 						gms.montaURL(endereco),
 						ResultadoGoogle.class);
+		
 		model.addAttribute(LOCALIZACAO, gms.getLocalizacao(resultado));
 		model.addAttribute(ENDERECO, gms.getEnderecoFormatado(resultado));
 		return "local/mostrar_localizacao";
